@@ -1,11 +1,8 @@
 import os
-
 from django.core.files import File
 from rest_framework.views import APIView
 from rest_framework.response import Response
-
 from ffmpy import FFmpeg
-
 from tigbar.settings import BASE_DIR
 from core.models import VideoModel
 
@@ -24,7 +21,7 @@ class CartoonizeVideo(APIView):
         # Call FFMPEG to process video
         ff = FFmpeg(
             inputs={inputPath: None},
-            outputs={outputPath: "-vf edgedetect=mode=colormix:low=0:high=0.2,eq=brightness=0.20,eq=contrast=2:saturation=3 -pix_fmt yuv420p" }
+            outputs={outputPath: "-vf edgedetect=mode=colormix:low=0.5:high=0.7,eq=brightness=0.20,eq=contrast=2:saturation=3 -pix_fmt yuv420p" }
         )
         ff.run()
 
