@@ -30,4 +30,10 @@ class CartoonizeVideo(APIView):
         os.remove(outputPath)
 
         # Return URL for the processed video
-        return Response({'processed_video': videoObject.processed_video.url}, status=200)
+        return Response(
+            {
+                'original_video': videoObject.original_video.url,
+                'processed_video': videoObject.processed_video.url
+            }, 
+            status=200
+        )
